@@ -1,0 +1,24 @@
+import re
+lv = ['A','E','I','O','U','a','e','i','o','u']
+lc = ['Q','W','R','T','Y','P','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M','q','w','r','t','y','p','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m']
+s = input()
+ls = []
+for c in s:
+    ls.append(c)
+
+for i in range(1,len(ls)-1):
+    if ls[i] in lc:
+        if ls[i-1] in lv:
+            if ls[i+1] in lv:
+                ls[i] = 'bb'
+s1 = ''.join(ls)
+
+m = re.findall(r'[qwrtypsdfghjklzxcvbnm][aeuio]{2,}[qwrtypsdfghjklzxcvbnm]',s1,re.I)
+
+if m:
+    a = ''.join(m)
+    n = re.findall(r'[aeuio]{2,}',a,re.I)
+    result = '\n'.join(n)
+    print(result)
+else:
+    print(-1)
